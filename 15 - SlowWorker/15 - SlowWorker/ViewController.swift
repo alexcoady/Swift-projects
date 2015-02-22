@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     
     @IBOutlet var startButton: UIButton!
     @IBOutlet var resultsTextView: UITextView!
+    @IBOutlet var spinner: UIActivityIndicatorView!
 
     
     override func viewDidLoad() {
@@ -56,22 +57,40 @@ class ViewController: UIViewController {
     
         let startTime = NSDate()
         self.resultsTextView.text = ""
+        self.startButton.enabled = false
+        self.spinner.startAnimating()
         
         let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
         dispatch_async(queue, {
             
             let fetchedData = self.fetchSomethingFromServer()
             let processedData = self.processData(fetchedData)
+            let group = dispatch_group_create()
             
-            let firstResult = self.calculateFirstResult(processedData)
-            let secondResult = self.calculateSecondResult(processedData)
+            var firstResult: String!
+            var secondResult: String!
             
-            let resultsSummary = "First: [\(firstResult)]\nSecond: [\(secondResult)]"
-            self.resultsTextView.text = resultsSummary
+            dispatch_group_async(group, queue) {
+                firstResult = self.calculateFirstResult(processedData)
+            }
             
-            let endTime = NSDate()
+            dispatch_group_async(group, queue) {
+                secondResult = self.calculateSecondResult(processedData)
+            }
             
-            println("Completed in \(endTime.timeIntervalSinceDate(startTime)) seconds")
+            dispatch_group_notify(group, queue) {
+                let resultsSummary = "First: [\(firstResult)]\nSecond: [\(secondResult)]"
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.resultsTextView.text = resultsSummary
+                    self.startButton.enabled = true
+                    self.spinner.stopAnimating()
+                })
+                
+                let endTime = NSDate()
+                
+                println("Completed in \(endTime.timeIntervalSinceDate(startTime)) seconds")
+            }
         })
     }
 }

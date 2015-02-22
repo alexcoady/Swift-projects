@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -33,19 +33,26 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="gGB-ah-9ck">
+                                <rect key="frame" x="354" y="33" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="gGB-ah-9ck" firstAttribute="leading" secondItem="qze-iF-nNR" secondAttribute="trailing" constant="8" id="0Vf-8Z-FCZ"/>
                             <constraint firstAttribute="centerX" secondItem="qze-iF-nNR" secondAttribute="centerX" id="Wdk-w4-Pas"/>
                             <constraint firstItem="qze-iF-nNR" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="YYv-PA-enb"/>
                             <constraint firstItem="mDa-Zf-d0k" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="jHh-zy-gty"/>
                             <constraint firstItem="mDa-Zf-d0k" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="oZF-Sl-uBi"/>
                             <constraint firstItem="mDa-Zf-d0k" firstAttribute="top" secondItem="qze-iF-nNR" secondAttribute="bottom" constant="20" id="voe-nB-qHi"/>
+                            <constraint firstItem="gGB-ah-9ck" firstAttribute="centerY" secondItem="qze-iF-nNR" secondAttribute="centerY" id="xxN-Gj-WGu"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="mDa-Zf-d0k" secondAttribute="bottom" constant="20" id="zDV-Kh-rIk"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="resultsTextView" destination="mDa-Zf-d0k" id="zbf-dL-yS0"/>
+                        <outlet property="spinner" destination="gGB-ah-9ck" id="u4Z-1A-fxv"/>
+                        <outlet property="startButton" destination="qze-iF-nNR" id="OWj-Av-uc9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
